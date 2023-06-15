@@ -1,0 +1,1077 @@
+<!-- Copyright 2023 Infosys Ltd. -->
+<div class="bg-area">
+    <div class="watermark">DEMO FOR PIPES</div>
+    <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<div class="body">
+    <h2>String related pipes:
+        <span *ngIf="!strPipes" style="cursor: pointer;" (click)="expandClicked('strPipes')">
+            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm4-9H13V8a1,1,0,0,0-2,0v3H8a1,1,0,0,0,0,2h3v3a1,1,0,0,0,2,0V13h3a1,1,0,0,0,0-2Z" fill="#6563ff"/></svg>
+        </span>
+        <span *ngIf="strPipes" style="cursor: pointer;" (click)="strPipes=false">
+            <svg width="24" height="24" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256C397.4 512 512 397.4 512 256S397.4 0 256 0zM352 280h-192C146.8 280 136 269.2 136 256c0-13.2 10.8-24 24-24h192C365.2 232 376 242.8 376 256C376 269.2 365.2 280 352 280z" fill="red"/></svg>
+        </span>
+    </h2>
+    <ng-container *ngIf="strPipes">
+        <div class="note smooth-entry">Below string pipes are available as a part of this library:</div>
+        <ul class="smooth-entry">
+            <li class="note-bullet" (click)="scroll(upper)">upper</li>
+            <li class="note-bullet" (click)="scroll(lower)">lower</li>
+            <li class="note-bullet" (click)="scroll(trim)">trim</li>
+            <li class="note-bullet" (click)="scroll(split)">split</li>
+            <li class="note-bullet" (click)="scroll(replace)">replace</li>
+            <li class="note-bullet" (click)="scroll(match)">match</li>
+            <li class="note-bullet" (click)="scroll(capitalize)">capitalize</li>
+            <li class="note-bullet" (click)="scroll(slugIt)">slugIt</li>
+            <li class="note-bullet" (click)="scroll(reverse)">reverse</li>
+            <li class="note-bullet" (click)="scroll(repeat)">repeat</li>
+            <li class="note-bullet" (click)="scroll(interpolate)">interpolate</li>
+            <li class="note-bullet" (click)="scroll(truncate)">truncate</li>
+            <li class="note-bullet" (click)="scroll(deLatinize)">deLatinize</li>
+        </ul>
+        <h3 class="smooth-entry">Examples:</h3>
+        <div class="code-area smooth-entry" #upper>
+            Code: <code>'I am invincible' | upper</code>
+            <br><br>
+            Input: <code>I am invincible</code>
+            <br>
+            Output: <code>{{ 'I am invincible' | upper }}</code>
+        </div>
+        <div class="note smooth-entry">#Convert a string to Uppercase.</div>
+        <div class="code-area smooth-entry" #lower>
+            Code: <code>'I AM A PORSCHE with NO BREAK' | lower</code>
+            <br><br>
+            Input: <code>I AM A PORSCHE with NO BREAK</code>
+            <br>
+            Output: <code>{{ 'I AM A PORSCHE with NO BREAK' | lower }}</code>
+        </div>
+        <div class="note smooth-entry">#Convert a string to Lowercase.</div>
+        <div class="code-area smooth-entry" #trim>
+            Code: <code>'&nbsp;&nbsp;45a&nbsp;&nbsp;&nbsp;' | trim: 'left'<span style="color: yellowgreen">&nbsp;-&nbsp;PERMISSIBLE VALUES - 'left', 'right', 'start', 'end', 'around'</span></code>
+            <br><br>
+            Input: <code>&nbsp;&nbsp;45a&nbsp;&nbsp;&nbsp;</code>
+            <br>
+            Output: <code>{{ '    45a        ' | trim: 'left' }}#Notice the spacing</code>
+        </div>
+        <div class="note smooth-entry">#'left' is an Optional Direction. Default is 'around'. Other permissible values are 'left', 'right', 'start', 'end' and 'around'.</div>
+        <div class="code-area smooth-entry" #split>
+            Code: <code>'45a 67b' | split: ' '</code>
+            <br><br>
+            Input: <code>45a 67b</code>
+            <br>
+            Output: <code>{{ '45a 67b' | split: ' ' }}</code>
+        </div>
+        <div class="note smooth-entry">#' ' is an Optional Separator. Default is ''.</div>
+        <div class="code-area smooth-entry" #replace>
+            Code: <code>'Here should be replaced by There' | replace: 'Here': 'There'</code>
+            <br><br>
+            Input: <code>Here should be replaced by There</code>
+            <br>
+            Output: <code>{{ 'Here should be replaced by There' | replace: 'Here': 'There' }}</code>
+        </div>
+        <div class="note smooth-entry">#'There' is Optional Replaced String. Default is 'Default Text'.</div>
+        <div class="code-area smooth-entry" #match>
+            Code: <code>'We have to get the first occurrence of the matching sub strings in the string. Matching string should be the[case insensitive]' | match: 'the'</code>
+            <br><br>
+            Input: <code>We have to get the first occurrence of the matching sub strings in the string. Matching string should be the[case insensitive]</code>
+            <br>
+            Output: <code>{{ 'We have to get the first occurrence of the matching sub strings in the string. Matching string should be the[case insensitive]' | match: 'the' }}</code>
+        </div>
+        <div class="note smooth-entry">#'the' represents the text which shall be available in the string. It returns the index of first occurence.</div>
+        <div class="code-area smooth-entry" #capitalize>
+            Code: <code>'We have to cApitalize this string.' | capitalize</code>
+            <br><br>
+            Input: <code>We have to cApitalize this string.</code>
+            <br>
+            Output: <code>{{ 'We have to cApitalize this string.' | capitalize }}</code>
+        </div>
+        <div class="note smooth-entry">#It Makes The First Letter Of Each Word in a String Capital.</div>
+        <div class="code-area smooth-entry" #slugIt>
+            Code: <code>'We have to slug this string.' | slugIt</code>
+            <br><br>
+            Input: <code>We have to slug this string.</code>
+            <br>
+            Output: <code>{{ 'We have to slug this string.' | slugIt }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe replaces spaces with hyphens.</div>
+        <div class="code-area smooth-entry" #reverse>
+            Code: <code>'string to reverse' | reverse</code>
+            <br><br>
+            Input: <code>string to reverse</code>
+            <br>
+            Output: <code>{{ 'string to reverse' | reverse }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe reverses the input string.</div>
+        <div class="code-area smooth-entry" #repeat>
+            Code: <code>'string to repeat' | repeat: 5: '-'</code>
+            <br><br>
+            Input: <code>string to repeat</code>
+            <br>
+            Output: <code>{{ 'string to repeat' | repeat: 5: '-' }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe repeats the string for n times joined by separator. 5 is optional count and '-' is optional separator. Default count is 1 and default separator is ''.</div>
+        <div class="code-area smooth-entry" #interpolate>
+            Code: <code>'I want to &#123;0&#125; these &#123;1&#125; using &#123;2&#125; pipe.' | interpolate: 'populate': 'strings': 'interpolate'</code>
+            <br><br>
+            Input: <code>I want to &#123;0&#125; these &#123;1&#125; using &#123;2&#125; pipe.</code>
+            <br>
+            Output: <code>{{ 'I want to {0} these {1} using {2} pipe.' | interpolate: 'populate': 'strings': 'interpolate' }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe reverses the input string.</div>
+        <div class="code-area smooth-entry" #truncate>
+            Code: <code>'string to truncate after 15 digits' | truncate: 15: '- - -'</code>
+            <br><br>
+            Input: <code>string to truncate after 15 digits</code>
+            <br>
+            Output: <code>{{ 'string to truncate after 15 digits' | truncate: 15: '- - -' }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe truncates the input string to given number of characters with provided delimiter. Default numer is half of the string's length and default delimiter is '...'.</div>
+        <div class="code-area smooth-entry" #deLatinize>
+            Code: <code>'şᵵᵲᶖnɡ to delaᵵᶖnᶖze' | deLatinize</code>
+            <br><br>
+            Input: <code>şᵵᵲᶖnɡ to delaᵵᶖnᶖze</code>
+            <br>
+            Output: <code>{{ 'şᵵᵲᶖnɡ to delaᵵᶖnᶖze' | deLatinize }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe de-latinize the input string.</div>
+    </ng-container>
+    <h2>Aggregation related pipes:
+        <span *ngIf="!aggrPipes" style="cursor: pointer;" (click)="expandClicked('aggrPipes')">
+            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm4-9H13V8a1,1,0,0,0-2,0v3H8a1,1,0,0,0,0,2h3v3a1,1,0,0,0,2,0V13h3a1,1,0,0,0,0-2Z" fill="#6563ff"/></svg>
+        </span>
+        <span *ngIf="aggrPipes" style="cursor: pointer;" (click)="aggrPipes=false">
+            <svg width="24" height="24" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256C397.4 512 512 397.4 512 256S397.4 0 256 0zM352 280h-192C146.8 280 136 269.2 136 256c0-13.2 10.8-24 24-24h192C365.2 232 376 242.8 376 256C376 269.2 365.2 280 352 280z" fill="red"/></svg>
+        </span>
+    </h2>
+    <ng-container *ngIf="aggrPipes">
+        <div class="note smooth-entry">Below aggregation pipes are available as a part of this library:</div>
+        <ul class="smooth-entry">
+            <li class="note-bullet" (click)="scroll(groupBy)">groupBy</li>
+            <li class="note-bullet" (click)="scroll(average)">average</li>
+            <li class="note-bullet" (click)="scroll(median)">median</li>
+            <li class="note-bullet" (click)="scroll(mode)">mode</li>
+            <li class="note-bullet" (click)="scroll(minimum)">minimum</li>
+            <li class="note-bullet" (click)="scroll(maximum)">maximum</li>
+            <li class="note-bullet" (click)="scroll(sum)">sum</li>
+        </ul>
+        <h3 class="smooth-entry">Examples:</h3>
+        <div class="code-area smooth-entry" #groupBy>
+            Code in TS: <code>public data: any[] = [
+                &#123;name: 'Adam', prof: 'Teacher'&#125;,
+                &#123;name: 'Brian', prof: 'Housekeeper'&#125;,
+                &#123;name: 'Chloe', prof: 'Teacher'&#125;,
+                &#123;name: 'Daren', prof: 'Gardener'&#125;
+            ]</code>
+            <br>
+            Template Code: <code>data | groupBy: 'prof' | stringify</code>
+            <br><br>
+            Input: <code>[
+                &#123;name: 'Adam', prof: 'Teacher'&#125;,
+                &#123;name: 'Brian', prof: 'Housekeeper'&#125;,
+                &#123;name: 'Chloe', prof: 'Teacher'&#125;,
+                &#123;name: 'Daren', prof: 'Gardener'&#125;
+            ]</code>
+            <br>
+            Output: <code>{{ [
+                {name: 'Adam', prof: 'Teacher'},
+                {name: 'Brian', prof: 'Housekeeper'},
+                {name: 'Chloe', prof: 'Teacher'},
+                {name: 'Daren', prof: 'Gardener'}
+            ] | groupBy: 'prof' | stringify }}</code>
+        </div>
+        <div class="note smooth-entry">'prof' column represents column to be used for grouping. Additionally, <b>stringify</b> pipe has been used to render data after converting it from Object to String.</div>
+        <div class="code-area smooth-entry" #average>
+            Code: <code>[3, 5, 7, 12, 5] | average</code>
+            <br><br>
+            Input: <code>[3, 5, 7, 12, 5]</code>
+            <br>
+            Output: <code>{{ [3, 5, 7, 12, 5] | average }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe strictly asks for an array of number as input, and returns a number as average of all the values of array.</div>
+        <div class="code-area smooth-entry" #median>
+            Code: <code>[3, 5, 7, 12, 5] | median</code>
+            <br><br>
+            Input: <code>[3, 5, 7, 12, 5]</code>
+            <br>
+            Output: <code>{{ [3, 5, 7, 12, 5] | median }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe strictly asks for an array of number as input, and returns a number as median of all the values of array.</div>
+        <div class="code-area smooth-entry" #mode>
+            Code: <code>[3, 5, 7, 12, 5] | mode</code>
+            <br><br>
+            Input: <code>[3, 5, 7, 12, 5]</code>
+            <br>
+            Output: <code>{{ [3, 5, 7, 12, 5] | mode }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe strictly asks for an array of number as input, and returns a number as mode of all the values of array.</div>
+        <div class="code-area smooth-entry" #minimum>
+            Code: <code>[3, 5, 7, 12, 5] | minimum</code>
+            <br><br>
+            Input: <code>[3, 5, 7, 12, 5]</code>
+            <br>
+            Output: <code>{{ [3, 5, 7, 12, 5] | minimum }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe strictly asks for an array of number as input, and returns a number as minimum of all the values of array.</div>
+        <div class="code-area smooth-entry" #maximum>
+            Code: <code>[3, 5, 7, 12, 5] | maximum</code>
+            <br><br>
+            Input: <code>[3, 5, 7, 12, 5]</code>
+            <br>
+            Output: <code>{{ [3, 5, 7, 12, 5] | maximum }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe strictly asks for an array of number as input, and returns a number as maximum of all the values of array.</div>
+        <div class="code-area smooth-entry" #sum>
+            Code: <code>[3, 5, 7, 12, 5] | sum</code>
+            <br><br>
+            Input: <code>[3, 5, 7, 12, 5]</code>
+            <br>
+            Output: <code>{{ [3, 5, 7, 12, 5] | sum }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe strictly asks for an array of number as input, and returns a number as sum of all the values of array.</div>
+    </ng-container>
+    <h2>Collections related pipes:
+        <span *ngIf="!collPipes" style="cursor: pointer;" (click)="expandClicked('collPipes')">
+            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm4-9H13V8a1,1,0,0,0-2,0v3H8a1,1,0,0,0,0,2h3v3a1,1,0,0,0,2,0V13h3a1,1,0,0,0,0-2Z" fill="#6563ff"/></svg>
+        </span>
+        <span *ngIf="collPipes" style="cursor: pointer;" (click)="collPipes=false">
+            <svg width="24" height="24" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256C397.4 512 512 397.4 512 256S397.4 0 256 0zM352 280h-192C146.8 280 136 269.2 136 256c0-13.2 10.8-24 24-24h192C365.2 232 376 242.8 376 256C376 269.2 365.2 280 352 280z" fill="red"/></svg>
+        </span>
+    </h2>
+    <ng-container *ngIf="collPipes">
+        <div class="note smooth-entry">Below array pipes are available as a part of this library:</div>
+        <ul class="smooth-entry">
+            <li class="note-bullet" (click)="scroll(empty)">empty</li>
+            <li class="note-bullet" (click)="scroll(firstItem)">firstItem</li>
+            <li class="note-bullet" (click)="scroll(lastItem)">lastItem</li>
+            <li class="note-bullet" (click)="scroll(popFirstItem)">popFirstItem</li>
+            <li class="note-bullet" (click)="scroll(popLastItem)">popLastItem</li>
+            <li class="note-bullet" (click)="scroll(join)">join</li>
+            <li class="note-bullet" (click)="scroll(combine)">combine</li>
+            <li class="note-bullet" (click)="scroll(set)">set</li>
+            <li class="note-bullet" (click)="scroll(except)">except</li>
+            <li class="note-bullet" (click)="scroll(and)">and</li>
+            <li class="note-bullet" (click)="scroll(or)">or</li>
+            <li class="note-bullet" (click)="scroll(range)">range</li>
+            <li class="note-bullet" (click)="scroll(map)">map</li>
+            <li class="note-bullet" (click)="scroll(pluckProperty)">pluckProperty</li>
+            <li class="note-bullet" (click)="scroll(filter)">filter</li>
+            <li class="note-bullet" (click)="scroll(filterOne)">filterOne</li>
+            <li class="note-bullet" (click)="scroll(sort)">sort</li>
+            <li class="note-bullet" (click)="scroll(orderBy)">orderBy</li>
+            <li class="note-bullet" (click)="scroll(reverseArray)">reverseArray</li>
+            <li class="note-bullet" (click)="scroll(length)">length</li>
+            <li class="note-bullet" (click)="scroll(chunk)">chunk</li>
+            <li class="note-bullet" (click)="scroll(drop)">drop</li>
+            <li class="note-bullet" (click)="scroll(flat)">flat</li>
+        </ul>
+        <h3 class="smooth-entry">Examples:</h3>
+        <div class="code-area smooth-entry" #empty>
+            Code: <code>[] | empty</code>
+            <br><br>
+            Input: <code>[]</code>
+            <br>
+            Output: <code>{{ [] | empty }}</code>
+            <div class='int-separator'></div>
+            Code: <code>[3, 5, 7, 12, 5] | empty</code>
+            <br><br>
+            Input: <code>[3, 5, 7, 12, 5]</code>
+            <br>
+            Output: <code>{{ [3, 5, 7, 12, 5] | empty }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe returns a boolean denoting the empty state of any array.</div>
+        <div class="code-area smooth-entry" #firstItem>
+            Code: <code>[3, 5, 7, "12", 5] | firstItem</code>
+            <br><br>
+            Input: <code>[3, 5, 7, "12", 5]</code>
+            <br>
+            Output: <code>{{ [3, 5, 7, "12", 5] | firstItem }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe takes an array as input, and returns the first element of the array.</div>
+        <div class="code-area smooth-entry" #lastItem>
+            Code: <code>[3, 5, 7, "12", 5] | lastItem</code>
+            <br><br>
+            Input: <code>[3, 5, 7, "12", 5]</code>
+            <br>
+            Output: <code>{{ [3, 5, 7, "12", 5] | lastItem }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe takes an array as input, and returns the last element of the array.</div>
+        <div class="code-area smooth-entry" #popFirstItem>
+            Code: <code>[3, 5, 7, "12", 5] | popFirstItem</code>
+            <br><br>
+            Input: <code>[3, 5, 7, "12", 5]</code>
+            <br>
+            Output: <code>{{ [3, 5, 7, "12", 5] | popFirstItem | stringify }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe takes an array as input, and returns the array without first element of the array.</div>
+        <div class="code-area smooth-entry" #popLastItem>
+            Code: <code>[3, 5, 7, "12", 5] | popLastItem</code>
+            <br><br>
+            Input: <code>[3, 5, 7, "12", 5]</code>
+            <br>
+            Output: <code>{{ [3, 5, 7, "12", 5] | popLastItem | stringify }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe takes an array as input, and returns the array without last element of the array.</div>
+        <div class="code-area smooth-entry" #join>
+            Code: <code>["Devil", "was", "at age of", "12", "When he joined the ", "."] | join: "Coders"</code>
+            <br><br>
+            Input: <code>["Devil", "was", "at age of", "12", "When he joined the ", "."]</code>
+            <br>
+            Output: <code>{{ ["Devil", "was", "at age of", "12", "When he joined the ", "."] | join: "Coders" }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe takes an array of string as input, and returns a string joining the array with the provided joiner. 'Coders' is an optional joiner. Default is ''.</div>
+        <div class="code-area smooth-entry" #combine>
+            Code: <code>[3, 5, 7, "12", 5] | combine: [5, "Ram"]</code>
+            <br><br>
+            Input: <code>[3, 5, 7, "12", 5]</code>
+            <br>
+            Output: <code>{{ [3, 5, 7, "12", 5] | combine: [5, "Ram"] | stringify }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe reverses the input string.</div>
+        <div class="code-area smooth-entry" #set>
+            Code: <code>[3, 5, 7, "12", 5] | set</code>
+            <br><br>
+            Input: <code>[3, 5, 7, "12", 5]</code>
+            <br>
+            Output: <code>{{ [3, 5, 7, "12", 5] | set | stringify }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe takes an array as input, and returns an array with unique elements of the array.</div>
+        <div class="code-area smooth-entry" #except>
+            Code: <code>[3, 5, 7, "12", 5] | except: [5, "12"]</code>
+            <br><br>
+            Input: <code>[3, 5, 7, "12", 5]</code>
+            <br>
+            Output: <code>{{ [3, 5, 7, "12", 5] | except: [5, "12"] | stringify }}</code>
+            <div class='int-separator'></div>
+            Code: <code>[3, 5, 7, "12", 5] | except: 5</code>
+            <br><br>
+            Input: <code>[3, 5, 7, "12", 5]</code>
+            <br>
+            Output: <code>{{ [3, 5, 7, "12", 5] | except: 5 | stringify }}</code>
+            <div class='int-separator'></div>
+            Code: <code>[3, 5, 7, "12", 5] | except: "12"</code>
+            <br><br>
+            Input: <code>[3, 5, 7, "12", 5]</code>
+            <br>
+            Output: <code>{{ [3, 5, 7, "12", 5] | except: "12" | stringify }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe takes an array/string/number as input, and returns an array without mentioned elements of the array.</div>
+        <div class="code-area smooth-entry" #and>
+            Code: <code>[3, 5, 7, "12", 5] | and: [5, "12", 1, "Ram"]</code>
+            <br><br>
+            Input: <code>[3, 5, 7, "12", 5]</code>
+            <br>
+            Output: <code>{{ [3, 5, 7, "12", 5] | and: [5, "12", 1, "Ram"] | stringify }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe takes an array as input, and returns an intersection with mentioned array[No duplicates in result].</div>
+        <div class="code-area smooth-entry" #or>
+            Code: <code>[3, 5, 7, "12", 5] | or: [5, "12", 1, "Ram"]</code>
+            <br><br>
+            Input: <code>[3, 5, 7, "12", 5]</code>
+            <br>
+            Output: <code>{{ [3, 5, 7, "12", 5] | or: [5, "12", 1, "Ram"] | stringify }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe takes an array as input, and returns a union with mentioned array[No duplicates in result].</div>
+        <div class="code-area smooth-entry" #range>
+            Code: <code>[3, 5, 7, 12, 5, 107] | range: 5: 50</code>
+            <br><br>
+            Input: <code>[3, 5, 7, 12, 5, 107]</code>
+            <br>
+            Output: <code>{{ [3, 5, 7, 12, 5, 107] | range: 5: 50 | stringify }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe takes an array of number as input, and returns an array with all the elements in provided range[both inclusive]. Both start[5] and end[50] values are optional, it takes minimum and maximum value of the array respectively, if ommitted.</div>
+        <div class="code-area smooth-entry" #map>
+            Code in TS: <code>public mapFunction(input) &#123;
+                return input + input;
+            &#125;</code>
+            <br>
+            Template Code: <code>[3, 5, 7, 12, 5, 107] | map: mapFunction</code>
+            <br><br>
+            Input: <code>[3, 5, 7, 12, 5, 107]</code>
+            <br>
+            Output: <code>{{ [3, 5, 7, 12, 5, 107] | map: mapFunction | stringify }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe takes an array of number as input, and returns an array after performing function operation on it.</div>
+        <div class="code-area smooth-entry" #pluckProperty>
+            Code: <code>[
+                &#123;name: 'Alex', details: &#123;official: &#123;designation: 'Coder', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '111122223333', pan: 'ABCDE1234F'&#125;&#125;&#125;,
+                &#123;name: 'Ben', details: &#123;official: &#123;designation: 'Coder', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '222233334444', pan: 'GHIJ1234K'&#125;&#125;&#125;,
+                &#123;name: 'Ceth', details: &#123;official: &#123;designation: 'Coder', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '333344445555', pan: 'LMNO1234P'&#125;&#125;&#125;
+            ] | pluckProperty: 'details.personal.aadhar'</code>
+            <br><br>
+            Input: <code>[
+                &#123;name: 'Alex', details: &#123;official: &#123;designation: 'Coder', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '111122223333', pan: 'ABCDE1234F'&#125;&#125;&#125;,
+                &#123;name: 'Ben', details: &#123;official: &#123;designation: 'Coder', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '222233334444', pan: 'GHIJ1234K'&#125;&#125;&#125;,
+                &#123;name: 'Ceth', details: &#123;official: &#123;designation: 'Coder', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '333344445555', pan: 'LMNO1234P'&#125;&#125;&#125;
+            ]</code>
+            <br>
+            Output: <code>{{ pluckArr | pluckProperty: 'details.personal.aadhar' | stringify }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe takes an array of number as input, and returns an array of mentioned key from it.</div>
+        <div class="code-area smooth-entry" #filter>
+            Code: <code>[3, 5, 7, 12, 5, 107] | filter: 5</code>
+            <br><br>
+            Input: <code>[3, 5, 7, 12, 5, 107]</code>
+            <br>
+            Output: <code>{{ [3, 5, 7, 12, 5, 107] | filter: 5 | stringify }}</code>
+            <div class='int-separator'></div>
+            Code: <code>["3", 5, 7, "12", 5, 107] | filter: "12"</code>
+            <br><br>
+            Input: <code>["3", 5, 7, "12", 5, 107]</code>
+            <br>
+            Output: <code>{{ ["3", 5, 7, "12", 5, 107] | filter: "12" | stringify }}</code>
+            <div class='int-separator'></div>
+            Code: <code>[
+                &#123;name: 'Alex', details: &#123;official: &#123;designation: 'Coder', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '111122223333', pan: 'ABCDE1234F'&#125;&#125;&#125;,
+                &#123;name: 'Ben', details: &#123;official: &#123;designation: 'Coder', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '222233334444', pan: 'GHIJ1234K'&#125;&#125;&#125;,
+                &#123;name: 'Ceth', details: &#123;official: &#123;designation: 'Tester', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '333344445555', pan: 'LMNO1234P'&#125;&#125;&#125;
+            ] | filter: ['details.official.designation', 'Coder']</code>
+            <br><br>
+            Input: <code>[
+                &#123;name: 'Alex', details: &#123;official: &#123;designation: 'Coder', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '111122223333', pan: 'ABCDE1234F'&#125;&#125;&#125;,
+                &#123;name: 'Ben', details: &#123;official: &#123;designation: 'Coder', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '222233334444', pan: 'GHIJ1234K'&#125;&#125;&#125;,
+                &#123;name: 'Ceth', details: &#123;official: &#123;designation: 'Tester', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '333344445555', pan: 'LMNO1234P'&#125;&#125;&#125;
+            ]</code>
+            <br>
+            Output: <code>{{ filterArr | filter: ['details.official.designation', 'Coder'] | stringify }}</code>
+            <div class='int-separator'></div>
+            Code: <code>[
+                &#123;name: 'Alex', details: &#123;official: &#123;designation: 'Coder', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '111122223333', pan: 'ABCDE1234F'&#125;&#125;&#125;,
+                &#123;name: 'Ben', details: &#123;official: &#123;designation: 'Coder', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '222233334444', pan: 'GHIJ1234K'&#125;&#125;&#125;,
+                &#123;name: 'Ceth', details: &#123;official: &#123;designation: 'Tester', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '333344445555', pan: 'LMNO1234P'&#125;&#125;&#125;
+            ] | filter: filterFunction</code>
+            <br><br>
+            Input: <code>[
+                &#123;name: 'Alex', details: &#123;official: &#123;designation: 'Coder', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '111122223333', pan: 'ABCDE1234F'&#125;&#125;&#125;,
+                &#123;name: 'Ben', details: &#123;official: &#123;designation: 'Coder', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '222233334444', pan: 'GHIJ1234K'&#125;&#125;&#125;,
+                &#123;name: 'Ceth', details: &#123;official: &#123;designation: 'Tester', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '333344445555', pan: 'LMNO1234P'&#125;&#125;&#125;
+            ]</code>
+            <br>
+            Output: <code>{{ filterArr | filter: filterFunction | stringify }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe takes an array as input, and returns a filtered array according to parameterized value/function.</div>
+        <div class="code-area smooth-entry" #filterOne>
+            Code: <code>[3, 5, 7, 12, 5, 107] | filter: 5</code>
+            <br><br>
+            Input: <code>[3, 5, 7, 12, 5, 107]</code>
+            <br>
+            Output: <code>{{ [3, 5, 7, 12, 5, 107] | filterOne: 5 | stringify }}</code>
+            <div class='int-separator'></div>
+            Code: <code>["3", 5, 7, "12", 5, 107] | filterOne: "12"</code>
+            <br><br>
+            Input: <code>["3", 5, 7, "12", 5, 107]</code>
+            <br>
+            Output: <code>{{ ["3", 5, 7, "12", 5, 107] | filterOne: "12" | stringify }}</code>
+            <div class='int-separator'></div>
+            Code: <code>[
+                &#123;name: 'Alex', details: &#123;official: &#123;designation: 'Coder', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '111122223333', pan: 'ABCDE1234F'&#125;&#125;&#125;,
+                &#123;name: 'Ben', details: &#123;official: &#123;designation: 'Coder', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '222233334444', pan: 'GHIJ1234K'&#125;&#125;&#125;,
+                &#123;name: 'Ceth', details: &#123;official: &#123;designation: 'Tester', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '333344445555', pan: 'LMNO1234P'&#125;&#125;&#125;
+            ] | filterOne: ['details.official.designation', 'Coder']</code>
+            <br><br>
+            Input: <code>[
+                &#123;name: 'Alex', details: &#123;official: &#123;designation: 'Coder', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '111122223333', pan: 'ABCDE1234F'&#125;&#125;&#125;,
+                &#123;name: 'Ben', details: &#123;official: &#123;designation: 'Coder', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '222233334444', pan: 'GHIJ1234K'&#125;&#125;&#125;,
+                &#123;name: 'Ceth', details: &#123;official: &#123;designation: 'Tester', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '333344445555', pan: 'LMNO1234P'&#125;&#125;&#125;
+            ]</code>
+            <br>
+            Output: <code>{{ filterArr | filterOne: ['details.official.designation', 'Coder'] | stringify }}</code>
+            <div class='int-separator'></div>
+            Code: <code>[
+                &#123;name: 'Alex', details: &#123;official: &#123;designation: 'Coder', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '111122223333', pan: 'ABCDE1234F'&#125;&#125;&#125;,
+                &#123;name: 'Ben', details: &#123;official: &#123;designation: 'Coder', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '222233334444', pan: 'GHIJ1234K'&#125;&#125;&#125;,
+                &#123;name: 'Ceth', details: &#123;official: &#123;designation: 'Tester', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '333344445555', pan: 'LMNO1234P'&#125;&#125;&#125;
+            ] | filterOne: filterFunction</code>
+            <br><br>
+            Input: <code>[
+                &#123;name: 'Alex', details: &#123;official: &#123;designation: 'Coder', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '111122223333', pan: 'ABCDE1234F'&#125;&#125;&#125;,
+                &#123;name: 'Ben', details: &#123;official: &#123;designation: 'Coder', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '222233334444', pan: 'GHIJ1234K'&#125;&#125;&#125;,
+                &#123;name: 'Ceth', details: &#123;official: &#123;designation: 'Tester', organization: 'AB CORP.'&#125;, personal: &#123;aadhar: '333344445555', pan: 'LMNO1234P'&#125;&#125;&#125;
+            ]</code>
+            <br>
+            Output: <code>{{ filterArr | filterOne: filterFunction | stringify }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe takes an array as input, and returns only one element according to parameterized value/function.</div>
+        <div class="code-area smooth-entry" #sort>
+            Code: <code>[3, 5, 7, 12, 5, 107] | sort: 'desc'<span style="color: yellowgreen">&nbsp;-&nbsp;PERMISSIBLE VALUES - 'asc', 'desc'</span></code>
+            <br><br>
+            Input: <code>[3, 5, 7, 12, 5, 107]</code>
+            <br>
+            Output: <code>{{ [3, 5, 7, 12, 5, 107] | sort: 'desc' | stringify }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe takes an array as input, and returns sorted array. 'desc' is optional sorting method parameter. Default is 'asc'.</div>
+        <div class="code-area smooth-entry" #orderBy>
+          Code: <code>[
+            &#123;name: 'Adam', prof: 'Engineer'&#125;,
+            &#123;name: 'Brian', prof: 'Teacher', age: 25&#125;,
+            &#123;name: 'Chloe', prof: 'Carpenter', age: 30&#125;
+          ] | orderBy: 'prof' : 'desc'</code>
+          <br><br>
+          Input: <code>[
+            &#123;name: 'Adam', prof: 'Engineer'&#125;,
+            &#123;name: 'Brian', prof: 'Teacher', age: 25&#125;,
+            &#123;name: 'Chloe', prof: 'Carpenter', age: 30&#125;
+          ]</code>
+          <br>
+          Output: <code>{{ [
+            {name: 'Adam', prof: 'Engineer'},
+            {name: 'Brian', prof: 'Teacher', age: 25},
+            {name: 'Chloe', prof: 'Carpenter', age: 30}
+          ] | orderBy: 'prof' : 'desc' | stringify }}</code>
+
+          <div class='int-separator'></div>
+
+          Code: <code>[
+            &#123;name: 'Adam', prof: 'Engineer', age: 45&#125;,
+            &#123;name: 'Brian', prof: 'Teacher', age: 25&#125;,
+            &#123;name: 'Chloe', age: 30&#125;
+          ] | orderBy: 'age' : 'asc' : 'number'</code>
+          <br><br>
+          Input: <code>[
+            &#123;name: 'Adam', prof: 'Engineer', age: 45&#125;,
+            &#123;name: 'Brian', prof: 'Teacher', age: 25&#125;,
+            &#123;name: 'Chloe', age: 30&#125;
+          ]</code>
+          <br>
+          Output: <code>{{ [
+            {name: 'Adam', prof: 'Engineer', age: 45},
+            {name: 'Brian', prof: 'Teacher', age: 25},
+            {name: 'Chloe', age: 30}
+          ] | orderBy: 'age' : 'asc' : 'number' | stringify }}</code>
+
+          <div class='int-separator'></div>
+
+          Code: <code>[
+            &#123;name: 'Adam', prof: 'Engineer', dob: '1978-1-1'&#125;,
+            &#123;name: 'Brian', prof: 'Teacher', dob: '1998-1-1'&#125;,
+            &#123;name: 'Chloe', dob: '1993-1-1'&#125;
+          ] | orderBy: 'dob' : 'desc' : 'date'</code>
+          <br><br>
+          Input: <code>[
+            &#123;name: 'Adam', prof: 'Engineer', dob: '1978-1-1'&#125;,
+            &#123;name: 'Brian', prof: 'Teacher', dob: '1998-1-1'&#125;,
+            &#123;name: 'Chloe', dob: '1993-1-1'&#125;
+          ]</code>
+          <br>
+          Output: <code>{{ [
+            {name: 'Adam', prof: 'Engineer', dob: '1978-1-1'},
+            {name: 'Brian', prof: 'Teacher', dob: '1998-1-1'},
+            {name: 'Chloe', dob: '1993-1-1'}
+          ] | orderBy: 'dob' : 'desc' : 'date' | stringify }}</code>
+
+        </div>
+        <div class="note smooth-entry">#This pipe takes an array of objects as input, and returns sorted array with respect to provided key as first argument.
+          Second argument is sorting parameter with permissible values as 'asc' | 'desc'.
+          Third argument is optional sorting parameter with permissible values as 'string' | 'boolean' | 'number' | 'date'. Default is 'string'.
+        </div>
+        <div class="code-area smooth-entry" #reverseArray>
+            Code: <code>[3, 5, 7, 12, 5, 107] | reverseArray</code>
+            <br><br>
+            Input: <code>[3, 5, 7, 12, 5, 107]</code>
+            <br>
+            Output: <code>{{ [3, 5, 7, 12, 5, 107] | reverseArray | stringify }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe takes an array as input, and returns reversed array.</div>
+        <div class="code-area smooth-entry" #length>
+            Code: <code>[3, 5, 7, 12, 5, 107] | length</code>
+            <br><br>
+            Input: <code>[3, 5, 7, 12, 5, 107]</code>
+            <br>
+            Output: <code>{{ [3, 5, 7, 12, 5, 107] | length }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe takes an array as input, and returns its length.</div>
+        <div class="code-area smooth-entry" #chunk>
+            Code: <code>[3, 5, 7, 12, 5, 107, "Glamour"] | chunk: 3</code>
+            <br><br>
+            Input: <code>[3, 5, 7, 12, 5, 107, "Glamour"]</code>
+            <br>
+            Output: <code>{{ [3, 5, 7, 12, 5, 107, "Glamour"] | chunk: 3 | stringify }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe takes an array as input, and returns an array containing smaller arrays of given length. 3 is an optional length parameter. Default is 1.</div>
+        <div class="code-area smooth-entry" #drop>
+            Code: <code>[3, 5, 7, 12, 5, 107, "Glamour"] | drop: 3</code>
+            <br><br>
+            Input: <code>[3, 5, 7, 12, 5, 107, "Glamour"]</code>
+            <br>
+            Output: <code>{{ [3, 5, 7, 12, 5, 107, "Glamour"] | drop: 3 | stringify }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe takes an array as input, and returns an array with last n values deleted. 3 is an optional drop parameter. Default is 1.</div>
+        <div class="code-area smooth-entry" #flat>
+            Code: <code>[3, [5, 7], [12, [[5], [107, "Glamour"]]]] | flat: 2</code>
+            <br><br>
+            Input: <code>[3, [5, 7], [12, [[5], [107, "Glamour"]]]]</code>
+            <br>
+            Output: <code>{{ [3, [5, 7], [12, [[5], [107, "Glamour"]]]] | flat: 2 | stringify }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe takes an array as input, and returns an array after flattening it to given layers. 2 is an optional layer parameter. Default is 1.</div>
+    </ng-container>
+    <h2>Number/Conversion related pipes:
+        <span *ngIf="!numPipes" style="cursor: pointer;" (click)="expandClicked('numPipes')">
+            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm4-9H13V8a1,1,0,0,0-2,0v3H8a1,1,0,0,0,0,2h3v3a1,1,0,0,0,2,0V13h3a1,1,0,0,0,0-2Z" fill="#6563ff"/></svg>
+        </span>
+        <span *ngIf="numPipes" style="cursor: pointer;" (click)="numPipes=false">
+            <svg width="24" height="24" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256C397.4 512 512 397.4 512 256S397.4 0 256 0zM352 280h-192C146.8 280 136 269.2 136 256c0-13.2 10.8-24 24-24h192C365.2 232 376 242.8 376 256C376 269.2 365.2 280 352 280z" fill="red"/></svg>
+        </span>
+    </h2>
+    <ng-container *ngIf="numPipes">
+        <div class="note smooth-entry">Below number pipes are available as a part of this library:</div>
+        <ul class="smooth-entry">
+            <li class="note-bullet" (click)="scroll(byteConvertTo)">byteConvertTo</li>
+            <li class="note-bullet" (click)="scroll(convertToBase)">convertToBase</li>
+            <li class="note-bullet" (click)="scroll(ceil)">ceil</li>
+            <li class="note-bullet" (click)="scroll(floor)">floor</li>
+            <li class="note-bullet" (click)="scroll(handleNan)">handleNan</li>
+            <li class="note-bullet" (click)="scroll(round)">round</li>
+            <li class="note-bullet" (click)="scroll(toDegree)">toDegree</li>
+            <li class="note-bullet" (click)="scroll(toRadian)">toRadian</li>
+            <li class="note-bullet" (click)="scroll(power)">power</li>
+            <li class="note-bullet" (click)="scroll(sqroot)">sqroot</li>
+            <li class="note-bullet" (click)="scroll(absolute)">absolute</li>
+            <li class="note-bullet" (click)="scroll(integerType)">integerType</li>
+            <li class="note-bullet" (click)="scroll(ordinal)">ordinal</li>
+        </ul>
+        <h3 class="smooth-entry">Examples:</h3>
+        <div class="code-area smooth-entry" #byteConvertTo>
+            Code: <code>450009856 | byteConvertTo: 'KB'<span style="color: yellowgreen">&nbsp;-&nbsp;PERMISSIBLE VALUES - 'B', 'KB', 'MB', 'GB', 'TB'</span></code>
+            <br><br>
+            Input: <code>450009856</code>
+            <br>
+            Output: <code>{{ 450009856 | byteConvertTo: 'KB' }}</code>
+        </div>
+        <div class="note smooth-entry">#'KB' is an Optional Message. Other permissible values are 'B'(Bytes), 'KB'(KiloBytes), 'MB'(MegaBytes), 'GB'(GigaBytes) and 'TB'(TeraBytes).</div>
+        <div class="code-area smooth-entry" #convertToBase>
+            Code: <code>45 | convertToBase: 'decimal': 2<span style="color: yellowgreen">&nbsp;-&nbsp;PERMISSIBLE VALUES - 'binary', 'octal', 'decimal', 'hexadecimal', ANY NUMBER</span></code>
+            <br><br>
+            Input: <code>45</code>
+            <br>
+            Output: <code>{{ 45 | convertToBase: 'decimal': 2 }}</code>
+            <div class='int-separator'></div>
+            Code: <code>'1001' | convertToBase: 2: 'octal'</code>
+            <br><br>
+            Input: <code>1001</code>
+            <br>
+            Output: <code>{{ '1001' | convertToBase: 2: 'octal' }}</code>
+            <div class='int-separator'></div>
+            Code: <code>45 | convertToBase: 10: 'hexadecimal'</code>
+            <br><br>
+            Input: <code>45</code>
+            <br>
+            Output: <code>{{ 45 | convertToBase: 10: 'hexadecimal' }}</code>
+            <div class='int-separator'></div>
+            Code: <code>10 | convertToBase: 'octal': 10</code>
+            <br><br>
+            Input: <code>10</code>
+            <br>
+            Output: <code>{{ 10 | convertToBase: 'octal': 10 }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe converts input number/string from one base to another. First parameter is the base of input. Second parameter is the base of output. These bases could be either a number or 'binary' or 'octal' or 'decimal' or 'hexadecimal'[See Example].</div>
+        <div class="code-area smooth-entry" #ceil>
+            Code: <code>99.45 | ceil</code>
+            <br><br>
+            Input: <code>99.45</code>
+            <br>
+            Output: <code>{{ 99.45 | ceil }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe returns the next integer to provided value.</div>
+        <div class="code-area smooth-entry" #floor>
+            Code: <code>99.45 | floor</code>
+            <br><br>
+            Input: <code>99.45</code>
+            <br>
+            Output: <code>{{ 99.45 | floor }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe returns the previous integer to provided value.</div>
+        <div class="code-area smooth-entry" #handleNan>
+            Code: <code>'45a' | handleNan: 'Not a Number'</code>
+            <br><br>
+            Input: <code>45a</code>
+            <br>
+            Output: <code>{{ '45a' | handleNan: 'Not a Number' }}</code>
+        </div>
+        <div class="note smooth-entry">#'Not a Number' is an Optional Message. Default is 'Invalid Number'.</div>
+        <div class="code-area smooth-entry" #round>
+            Code: <code>44.555 | round</code>
+            <br><br>
+            Input: <code>44.555</code>
+            <br>
+            Output: <code>{{ 44.555 | round: 1 }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe returns the rounded value to provided value upto given decimal digits. 1 is optional number of digits post decimal. Default is 0.</div>
+        <div class="code-area smooth-entry" #toDegree>
+            Code: <code>3.147 | toDegree</code>
+            <br><br>
+            Input: <code>3.147</code>
+            <br>
+            Output: <code>{{ 3.147 | toDegree }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe converts radians into degrees.</div>
+        <div class="code-area smooth-entry" #toRadian>
+            Code: <code>720 | toRadian</code>
+            <br><br>
+            Input: <code>720</code>
+            <br>
+            Output: <code>{{ 720 | toRadian }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe converts degrees into radians.</div>
+        <div class="code-area smooth-entry" #power>
+            Code: <code>90 | power: 3</code>
+            <br><br>
+            Input: <code>90</code>
+            <br>
+            Output: <code>{{ 90 | power: 3 }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe returns the calculated power value. 3 is optional exponent. Default is 0.</div>
+        <div class="code-area smooth-entry" #sqroot>
+            Code: <code>1024 | sqroot</code>
+            <br><br>
+            Input: <code>1024</code>
+            <br>
+            Output: <code>{{ 1024 | sqroot }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe returns the square root of provided value.</div>
+        <div class="code-area smooth-entry" #absolute>
+            Code: <code>-20 | absolute</code>
+            <br><br>
+            Input: <code>-20</code>
+            <br>
+            Output: <code>{{ -20 | absolute }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe returns the absolute value of provided value.</div>
+        <div class="code-area smooth-entry" #integerType>
+            Code: <code>-20 | integerType</code>
+            <br><br>
+            Input: <code>-20</code>
+            <br>
+            Output: <code>{{ -20 | integerType }}</code>
+            <div class='int-separator'></div>
+            Code: <code>0 | integerType</code>
+            <br><br>
+            Input: <code>0</code>
+            <br>
+            Output: <code>{{ 0 | integerType }}</code>
+            <div class='int-separator'></div>
+            Code: <code>20 | integerType</code>
+            <br><br>
+            Input: <code>20</code>
+            <br>
+            Output: <code>{{ 20 | integerType }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe returns the nature of provided value.</div>
+        <div class="code-area smooth-entry" #ordinal>
+            Code: <code>25 | ordinal</code>
+            <br><br>
+            Input: <code>25</code>
+            <br>
+            Output: <code>{{ 25 | ordinal }}</code>
+            <div class='int-separator'></div>
+            Code: <code>33 | ordinal</code>
+            <br><br>
+            Input: <code>33</code>
+            <br>
+            Output: <code>{{ 33 | ordinal }}</code>
+        </div>
+        <div class="note smooth-entry">#This pipe returns the ordinal value of provided value.</div>
+    </ng-container>
+    <h2>Boolean returning pipes:
+        <span *ngIf="!boolPipes" style="cursor: pointer;" (click)="expandClicked('boolPipes')">
+            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm4-9H13V8a1,1,0,0,0-2,0v3H8a1,1,0,0,0,0,2h3v3a1,1,0,0,0,2,0V13h3a1,1,0,0,0,0-2Z" fill="#6563ff"/></svg>
+        </span>
+        <span *ngIf="boolPipes" style="cursor: pointer;" (click)="boolPipes=false">
+            <svg width="24" height="24" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256C397.4 512 512 397.4 512 256S397.4 0 256 0zM352 280h-192C146.8 280 136 269.2 136 256c0-13.2 10.8-24 24-24h192C365.2 232 376 242.8 376 256C376 269.2 365.2 280 352 280z" fill="red"/></svg>
+        </span>
+    </h2>
+    <ng-container *ngIf="boolPipes">
+        <div class="note smooth-entry">Below boolean returning pipes are available as a part of this library:</div>
+        <ul class="smooth-entry">
+            <li class="note-bullet" (click)="scroll(isArray)">isArray</li>
+            <li class="note-bullet" (click)="scroll(isBinary)">isBinary</li>
+            <li class="note-bullet" (click)="scroll(isDefined)">isDefined</li>
+            <li class="note-bullet" (click)="scroll(isEqual)">isEqual</li>
+            <li class="note-bullet" (click)="scroll(isFunction)">isFunction</li>
+            <li class="note-bullet" (click)="scroll(isIdentical)">isIdentical</li>
+            <li class="note-bullet" (click)="scroll(isNil)">isNil</li>
+            <li class="note-bullet" (click)="scroll(isNull)">isNull</li>
+            <li class="note-bullet" (click)="scroll(isNumber)">isNumber</li>
+            <li class="note-bullet" (click)="scroll(isObject)">isObject</li>
+            <li class="note-bullet" (click)="scroll(isString)">isString</li>
+            <li class="note-bullet" (click)="scroll(isTruthy)">isTruthy</li>
+            <li class="note-bullet" (click)="scroll(isUndefined)">isUndefined</li>
+        </ul>
+        <h3 class="smooth-entry">Examples:</h3>
+        <div class="code-area smooth-entry" #isArray>
+            Code: <code>['45', 97] | isArray</code>
+            <br><br>
+            Input: <code>['45', 97]</code>
+            <br>
+            Output: <code>{{ ['45', 97] | isArray }}</code>
+            <div class='int-separator'></div>
+            Code: <code>'45a' | isArray</code>
+            <br><br>
+            Input: <code>45a</code>
+            <br>
+            Output: <code>{{ '45a' | isArray }}</code>
+        </div>
+        <div class="note smooth-entry">#Returns a boolean showing if input is Array or not.</div>
+        <div class="code-area smooth-entry" #isBinary>
+            Code: <code>['45', 97] | isBinary</code>
+            <br><br>
+            Input: <code>['45', 97]</code>
+            <br>
+            Output: <code>{{ ['45', 97] | isBinary }}</code>
+            <div class='int-separator'></div>
+            Code: <code>11000110 | isBinary</code>
+            <br><br>
+            Input: <code>11000110</code>
+            <br>
+            Output: <code>{{ 11000110 | isBinary }}</code>
+        </div>
+        <div class="note smooth-entry">#Returns a boolean showing if input is Binary or not.</div>
+        <div class="code-area smooth-entry" #isDefined>
+            Code: <code>['45', 97] | isDefined</code>
+            <br><br>
+            Input: <code>['45', 97]</code>
+            <br>
+            Output: <code>{{ ['45', 97] | isDefined }}</code>
+            <div class='int-separator'></div>
+            Code: <code>null | isDefined</code>
+            <br><br>
+            Input: <code>null</code>
+            <br>
+            Output: <code>{{ null | isDefined }}</code>
+        </div>
+        <div class="note smooth-entry">#Returns a boolean showing if input is Defined or not.</div>
+        <div class="code-area smooth-entry" #isEqual>
+            Code: <code>['45', 97] | isEqual: 10</code>
+            <br><br>
+            Input: <code>['45', 97]</code>
+            <br>
+            Output: <code>{{ ['45', 97] | isEqual: 10 }}</code>
+            <div class='int-separator'></div>
+            Code: <code>'10' | isEqual: 10</code>
+            <br><br>
+            Input: <code>10</code>
+            <br>
+            Output: <code>{{ '10' | isEqual: 10 }}</code>
+        </div>
+        <div class="note smooth-entry">#Returns a boolean showing if input is Equal to given data or not[Datatype ignored].</div>
+        <div class="code-area smooth-entry" #isFunction>
+            Code: <code>['45', 97] | isFunction</code>
+            <br><br>
+            Input: <code>['45', 97]</code>
+            <br>
+            Output: <code>{{ ['45', 97] | isFunction }}</code>
+            <div class='int-separator'></div>
+            Code: <code>filterFunction | isFunction</code>
+            <br><br>
+            Input: <code>filterFunction</code>
+            <br>
+            Output: <code>{{ filterFunction | isFunction }}</code>
+        </div>
+        <div class="note smooth-entry">#Returns a boolean showing if input is Function or not.</div>
+        <div class="code-area smooth-entry" #isIdentical>
+            Code: <code>125 | isIdentical: '125'</code>
+            <br><br>
+            Input: <code>125</code>
+            <br>
+            Output: <code>{{ 125 | isIdentical: '125' }}</code>
+            <div class='int-separator'></div>
+            Code: <code>'125' | isIdentical: '125'</code>
+            <br><br>
+            Input: <code>'125'</code>
+            <br>
+            Output: <code>{{ '125' | isIdentical: '125' }}</code>
+        </div>
+        <div class="note smooth-entry">#Returns a boolean showing if input is strictly Equal to given data or not.</div>
+        <div class="code-area smooth-entry" #isNil>
+            Code: <code>125 | isNil</code>
+            <br><br>
+            Input: <code>125</code>
+            <br>
+            Output: <code>{{ 125 | isNil }}</code>
+            <div class='int-separator'></div>
+            Code: <code>'0' | isNil</code>
+            <br><br>
+            Input: <code>0</code>
+            <br>
+            Output: <code>{{ '0' | isNil }}</code>
+        </div>
+        <div class="note smooth-entry">#Returns a boolean showing if input is Zero or not.</div>
+        <div class="code-area smooth-entry" #isNull>
+            Code: <code>125 | isNull</code>
+            <br><br>
+            Input: <code>125</code>
+            <br>
+            Output: <code>{{ 125 | isNull }}</code>
+            <div class='int-separator'></div>
+            Code: <code>null | isNull</code>
+            <br><br>
+            Input: <code>null</code>
+            <br>
+            Output: <code>{{ null | isNull }}</code>
+        </div>
+        <div class="note smooth-entry">#Returns a boolean showing if input is null or not.</div>
+        <div class="code-area smooth-entry" #isNumber>
+            Code: <code>125 | isNumber</code>
+            <br><br>
+            Input: <code>125</code>
+            <br>
+            Output: <code>{{ 125 | isNumber }}</code>
+            <div class='int-separator'></div>
+            Code: <code>'125' | isNumber</code>
+            <br><br>
+            Input: <code>'125'</code>
+            <br>
+            Output: <code>{{ '125' | isNumber }}</code>
+            <div class='int-separator'></div>
+            Code: <code>'125a' | isNumber</code>
+            <br><br>
+            Input: <code>'125a'</code>
+            <br>
+            Output: <code>{{ '125a' | isNumber }}</code>
+        </div>
+        <div class="note smooth-entry">#Returns a boolean showing if input is a number or not.</div>
+        <div class="code-area smooth-entry" #isObject>
+            Code: <code>125 | isObject</code>
+            <br><br>
+            Input: <code>125</code>
+            <br>
+            Output: <code>{{ 125 | isObject }}</code>
+            <div class='int-separator'></div>
+            Code: <code>&#123;name: 'Adam', prof: 'Teacher'&#125; | isObject</code>
+            <br><br>
+            Input: <code>&#123;name: 'Adam', prof: 'Teacher'&#125;</code>
+            <br>
+            Output: <code>{{ {name: 'Adam', prof: 'Teacher'} | isObject }}</code>
+        </div>
+        <div class="note smooth-entry">#Returns a boolean showing if input is an object or not.</div>
+        <div class="code-area smooth-entry" #isString>
+            Code: <code>125 | isString</code>
+            <br><br>
+            Input: <code>125</code>
+            <br>
+            Output: <code>{{ 125 | isString }}</code>
+            <div class='int-separator'></div>
+            Code: <code>'125' | isString</code>
+            <br><br>
+            Input: <code>'125'</code>
+            <br>
+            Output: <code>{{ '125' | isString }}</code>
+        </div>
+        <div class="note smooth-entry">#Returns a boolean showing if input is string or not.</div>
+        <div class="code-area smooth-entry" #isTruthy>
+            Code: <code>true | isTruthy</code>
+            <br><br>
+            Input: <code>true</code>
+            <br>
+            Output: <code>{{ true | isTruthy }}</code>
+            <div class='int-separator'></div>
+            Code: <code>'125' | isTruthy</code>
+            <br><br>
+            Input: <code>'125'</code>
+            <br>
+            Output: <code>{{ '125' | isTruthy }}</code>
+        </div>
+        <div class="note smooth-entry">#Returns a boolean showing if input is true or not.</div>
+        <div class="code-area smooth-entry" #isUndefined>
+            Code: <code>undefined | isUndefined</code>
+            <br><br>
+            Input: <code>undefined</code>
+            <br>
+            Output: <code>{{ undefined| isUndefined }}</code>
+            <div class='int-separator'></div>
+            Code: <code>'125' | isUndefined</code>
+            <br><br>
+            Input: <code>'125'</code>
+            <br>
+            Output: <code>{{ '125' | isUndefined }}</code>
+        </div>
+        <div class="note smooth-entry">#Returns a boolean showing if input is undefined or not.</div>
+    </ng-container>
+    <h2>Object related pipes:
+        <span *ngIf="!objPipes" style="cursor: pointer;" (click)="expandClicked('objPipes')">
+            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm4-9H13V8a1,1,0,0,0-2,0v3H8a1,1,0,0,0,0,2h3v3a1,1,0,0,0,2,0V13h3a1,1,0,0,0,0-2Z" fill="#6563ff"/></svg>
+        </span>
+        <span *ngIf="objPipes" style="cursor: pointer;" (click)="objPipes=false">
+            <svg width="24" height="24" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256C397.4 512 512 397.4 512 256S397.4 0 256 0zM352 280h-192C146.8 280 136 269.2 136 256c0-13.2 10.8-24 24-24h192C365.2 232 376 242.8 376 256C376 269.2 365.2 280 352 280z" fill="red"/></svg>
+        </span>
+    </h2>
+    <ng-container *ngIf="objPipes">
+        <div class="note smooth-entry">Below object related pipes are available as a part of this library:</div>
+        <ul class="smooth-entry">
+            <li class="note-bullet" (click)="scroll(keyArray)">keyArray</li>
+            <li class="note-bullet" (click)="scroll(toArray)">toArray</li>
+            <li class="note-bullet" (click)="scroll(normaliseObjArray)">normaliseObjArray</li>
+            <li class="note-bullet" (click)="scroll(stringify)">stringify</li>
+        </ul>
+        <h3 class="smooth-entry">Examples:</h3>
+        <div class="code-area smooth-entry" #keyArray>
+            Code: <code>['45', 97] | keyArray</code>
+            <br><br>
+            Input: <code>['45', 97]</code>
+            <br>
+            Output: <code>{{ ['45', 97] | keyArray | stringify }}</code>
+            <div class='int-separator'></div>
+            Code: <code>&#123;name: 'Adam', prof: 'Teacher'&#125; | keyArray</code>
+            <br><br>
+            Input: <code>&#123;name: 'Adam', prof: 'Teacher'&#125;</code>
+            <br>
+            Output: <code>{{ {name: 'Adam', prof: 'Teacher'} | keyArray | stringify }}</code>
+        </div>
+        <div class="note smooth-entry">#Returns an Array of all the indexes of given Object/Array.</div>
+        <div class="code-area smooth-entry" #toArray>
+            Code: <code>['45', 97] | toArray</code>
+            <br><br>
+            Input: <code>['45', 97]</code>
+            <br>
+            Output: <code>{{ ['45', 97] | toArray | stringify }}</code>
+            <div class='int-separator'></div>
+            Code: <code>&#123;name: 'Adam', prof: 'Teacher'&#125; | toArray</code>
+            <br><br>
+            Input: <code>&#123;name: 'Adam', prof: 'Teacher'&#125;</code>
+            <br>
+            Output: <code>{{ {name: 'Adam', prof: 'Teacher'} | toArray | stringify }}</code>
+        </div>
+        <div class="note smooth-entry">#Returns an Array of all the values of given Object/Array.</div>
+        <div class="code-area smooth-entry" #normaliseObjArray>
+            Code: <code>[
+                &#123;name: 'Adam', prof: 'Engineer'&#125;,
+                &#123;name: 'Brian', prof: 'Teacher', age: 25&#125;,
+                &#123;name: 'Chloe', age: 30&#125;
+            ] | normaliseObjArray: &#123;name: 'Raj', prof: 'Programmer', age: 24&#125;</code>
+            <br><br>
+            Input: <code>[
+                &#123;name: 'Adam', prof: 'Engineer'&#125;,
+                &#123;name: 'Brian', prof: 'Teacher', age: 25&#125;,
+                &#123;name: 'Chloe', age: 30&#125;
+            ]</code>
+            <br>
+            Output: <code>{{ [
+                {name: 'Adam', prof: 'Engineer'},
+                {name: 'Brian', prof: 'Teacher', age: 25},
+                {name: 'Chloe', age: 30}
+            ] | normaliseObjArray: {name: 'Raj', prof: 'Programmer', age: 24} | stringify }}</code>
+        </div>
+        <div class="note smooth-entry">#Returns an Array with added default properties of given Object/Array.</div>
+        <div class="code-area smooth-entry" #stringify>
+            Code: <code>&#123;name: 'Adam', prof: 'Teacher'&#125; | stringify</code>
+            <br><br>
+            Input: <code>&#123;name: 'Adam', prof: 'Teacher'&#125;</code>
+            <br>
+            Output: <code>{{ {name: 'Adam', prof: 'Teacher'} | stringify }}<span style="color: yellowgreen">&nbsp;-&nbsp;WITH STRINGIFY</span></code>
+            <br>
+            Output: <code>{{ {name: 'Adam', prof: 'Teacher'} }}<span style="color: yellowgreen">&nbsp;-&nbsp;WITHOUT STRINGIFY</span></code>
+        </div>
+        <div class="note smooth-entry">#Returns an Renderable template Object.</div>
+    </ng-container>
+</div>
+<button (click)="topFunction()" id="scrollToTop" class="go-to-top" title="Go to top"><b>&#8607;</b></button>
